@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src="legaldad.png" alt="LegalAppa Log" className="logo" />
+        <img src="legaldad.png" alt="LegalAppa Logo" className="logo" />
       </header>
       <Chatbot />
     </div>
