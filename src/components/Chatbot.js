@@ -3,7 +3,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import md from 'markdown-it';
 
 // Ensure environment variable is correctly loaded
-const apiKey = "AIzaSyAloCAeKwkEeV9y_IFn5mabczcpa97YV5g";
+const apiKey = "";
 
 // Initialize the model
 const genAI = new GoogleGenerativeAI(apiKey);
