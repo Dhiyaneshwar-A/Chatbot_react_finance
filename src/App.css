@@ -37,3 +37,29 @@
   }
 }
 
+.App-main {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.content-section,
+.chatbot-section,
+.unique-features-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  color: #333;
+}
+
+.scraped-content {
+  background-color: #eef;
+  padding: 10px;
+  border: 1px solid #99c;
+  border-radius: 5px;
+}

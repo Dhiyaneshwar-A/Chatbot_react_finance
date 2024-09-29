@@ -1,10 +1,9 @@
-// server.js
 const express = require('express');
 const puppeteer = require('puppeteer');
 const cors = require('cors');
 
 const app = express();
-app.use(cors());  // Enable CORS for client-side requests
+app.use(cors());
 
 app.get('/scrape', async (req, res) => {
   const { url } = req.query;
@@ -14,14 +13,27 @@ app.get('/scrape', async (req, res) => {
   }
 
   try {
-    const browser = await puppeteer.launch({ headless: true });
-    const page = await browser.newPage();
-    await page.goto(url, { waitUntil: 'networkidle2' });  // Wait until the page is fully loaded
-
-    // Extract text content from the website (modify as needed)
-    const content = await page.evaluate(() => {
-      return document.body.innerText;
+    console.log('Launching Puppeteer...');
+    const browser = await puppeteer.launch({
+      headless: true, // Ensure headless mode is enabled
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-infobars',
+        '--hide-scrollbars',
+        '--disable-extensions',
+      ],
     });
+
+    const page = await browser.newPage();
+    console.log('Navigating to:', url);
+
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 120000 });
+    await page.waitForSelector('body');
+
+    const content = await page.evaluate(() => document.body.innerText);
 
     await browser.close();
     res.send({ content });
@@ -31,7 +43,8 @@ app.get('/scrape', async (req, res) => {
   }
 });
 
-const port = 3001;  // You can change this port number if needed
+const port = 3001;
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

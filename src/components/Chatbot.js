@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as XLSX from 'xlsx';
 import mammoth from 'mammoth';
 import * as pdfjsLib from 'pdfjs-dist/build/pdf';
-
+import "./Chatbot.css"
 const apiKey = "AIzaSyAloCAeKwkEeV9y_IFn5mabczcpa97YV5g";
 const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
@@ -22,7 +22,7 @@ const Chatbot = () => {
 
   function initialHistory() {
     return [
-      
+    
   {
     role: 'user',
     parts: [
@@ -118,9 +118,9 @@ const Chatbot = () => {
         text: 'Sure! Here’s a brief overview of web scraping concepts:\n\n1. **Definition:** Web scraping is the automated process of extracting information from websites.\n2. **Techniques:** Common techniques include:\n   - **HTML Parsing:** Analyzing the HTML structure of a webpage to find and extract relevant data.\n   - **APIs:** Using web APIs that allow access to data in a structured format, often more efficient than scraping HTML.\n   - **Headless Browsers:** Simulating a browser environment to render and interact with pages that rely on JavaScript.\n3. **Tools:** Popular web scraping tools and libraries include:\n   - **Beautiful Soup:** A Python library for parsing HTML and XML documents.\n   - **Scrapy:** An open-source web crawling framework for Python.\n   - **Puppeteer:** A Node library to control headless Chrome for automated browsing and scraping.\n4. **Ethical Considerations:** Always check a website’s `robots.txt` file to see if scraping is allowed and be mindful of the legal implications.\n5. **Use Cases:** Web scraping is used for:\n   - **Market Research:** Gathering competitive data.\n   - **Data Collection:** Aggregating information for analysis or research.\n   - **Price Monitoring:** Tracking product prices across e-commerce sites.'
       }
     ]
-  }
-
-];
+  }     
+ 
+    ];
   }
 
   const addToHistory = (role, text) => {
@@ -210,7 +210,8 @@ const Chatbot = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
+    setLoading(true);
     if (input.trim() === '' && !file) return;
 
     if (input.trim() !== '') {
@@ -227,6 +228,8 @@ const Chatbot = () => {
         addToHistory('model', aiResponse);
         setMessages(prevMessages => [...prevMessages, { text: aiResponse, fromUser: false }]);
         setFile(null);
+        
+      setLoading(false);
       } catch (error) {
         console.error('Error reading file:', error);
       }
@@ -252,13 +255,12 @@ const Chatbot = () => {
         <h1>ASK</h1>
         <img src="legaldad.png" alt="LegalAppa icon" className="w-12 h-12 rounded-md" />
       </button>
-
+  
       {isChatbotOpen && (
         <div id="chatbot-popup" className="chatbot-popup">
           <span className="close-button" onClick={() => setChatbotOpen(false)}>&times;</span>
           <div className="p-2 bg-gemRegular flex gap-5 items-center">
-            <img src="legaldad.png" alt="chatbot image" className="w-10 h-10 rounded-md" />
-            <h1 className="text-gemDeep text-lg font-medium">LegalAppa</h1>
+            <img src="legaldad.png" alt="Chatbot icon" className="w-10 h-10 rounded-md" />
           </div>
           <div id="chat-container" className="chat-container">
             {messages.map((msg, index) => (
@@ -282,6 +284,6 @@ const Chatbot = () => {
       )}
     </>
   );
-};
+  };
 
 export default Chatbot;

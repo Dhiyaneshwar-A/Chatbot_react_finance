@@ -1,0 +1,61 @@
+.chatbot-popup {
+    position: fixed; /* Fixed positioning to cover the entire screen */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width */
+    height: 100vh; /* Full height */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+    z-index: 1000; /* Ensure it appears above other elements */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items to the top */
+    padding: 20px; /* Add some padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional shadow for better visibility */
+  }
+  
+  .chat-container {
+    flex-grow: 1; /* Allow the chat container to grow and take up available space */
+    overflow-y: auto; /* Enable scrolling if messages overflow */
+  }
+  
+  .close-button {
+    cursor: pointer; /* Pointer cursor for the close button */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px; /* Make the close button larger */
+    background-color: transparent; /* No background */
+    border: none; /* No border */
+  }
+  
+  .chat-container {
+    flex-grow: 1; /* Allow the chat container to grow and take up available space */
+    overflow-y: auto; /* Enable scrolling if messages overflow */
+    font-size: 1.2em; /* Increase the font size for chat messages */
+  }
+  
+  .user-message,
+  .ai-message {
+    font-size: 1.2em; /* Increase font size for user and AI messages */
+    padding: 10px; /* Add some padding for better readability */
+    border-radius: 5px; /* Optional: round the corners */
+  }
+  
+  .error-message {
+    font-size: 1.2em; /* Increase font size for error messages */
+    color: red; /* Optional: change color to red for visibility */
+  }
+  
+  .chat-form input,
+  .chat-form textarea {
+    font-size: 1.2em; /* Increase font size for input fields */
+  }
+  
+  .open-chatbot-button h1 {
+    font-size: 1.5em; /* Make the button text larger */
+  }
+  
+  .loading-indicator {
+    font-size: 1.2em; /* Increase font size for loading indicator */
+  }
+  

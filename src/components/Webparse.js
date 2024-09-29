@@ -7,7 +7,7 @@ const WebScraper = () => {
   const [error, setError] = useState(''); // To handle errors
 
   // Function to fetch the content from the given URL when button is clicked
-  const handleFetchContent = async () => {
+  const handleScrapeWebsite = async () => {
     if (!url) {
       setError('Please provide a valid URL');
       return;
@@ -36,9 +36,10 @@ const WebScraper = () => {
         className="url-input"
       />
       
-      {/* Button to trigger the fetch content */}
-      <button onClick={handleFetchContent} className="fetch-button">
-        Fetch Content
+      {/* Button to trigger the scrape website */}
+      <br></br>
+      <button onClick={handleScrapeWebsite} className="scrape-button">
+        Scrape Website
       </button>
       
       {/* Error message display */}
