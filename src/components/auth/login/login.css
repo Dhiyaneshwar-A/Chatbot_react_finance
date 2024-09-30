@@ -1,0 +1,72 @@
+/* Main container styles */
+.main-container {
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    background-color: #f8f9fa; /* Light background color */
+}
+
+/* Login box styles */
+.login-box {
+    width: 400px; /* Fixed width for the login box */
+    padding: 2rem; /* Padding inside the box */
+    background-color: #ffffff; /* White background for login box */
+    border-radius: 1rem; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Input field styles */
+input[type="email"],
+input[type="password"] {
+    width: 100%; /* Full width for inputs */
+    padding: 0.75rem; /* Padding for inputs */
+    border-radius: 0.5rem; /* Rounded corners */
+    border: 1px solid #d1d5db; /* Light border */
+    background-color: #e5e7eb; /* Input background color */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Transition effect */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #3b82f6; /* Change border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25); /* Shadow on focus */
+}
+
+/* Button styles */
+button {
+    width: 100%; /* Full width for buttons */
+    padding: 0.75rem; /* Button padding */
+    background-color: #2563eb; /* Button background color */
+    color: white; /* Text color */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: background-color 0.3s; /* Transition effect */
+    font-weight: 500; /* Font weight */
+}
+
+button:hover:not(.disabled) {
+    background-color: #1d4ed8; /* Darker on hover */
+}
+
+button.disabled {
+    background-color: #9ca3af; /* Gray background when disabled */
+    cursor: not-allowed; /* Change cursor style */
+}
+
+/* Error message styles */
+.error-message {
+    color: #dc2626; /* Error text color */
+    font-size: 0.875rem; /* Slightly smaller font */
+}
+
+/* Link styles */
+.hover\:underline:hover {
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+/* Additional styles for responsive design */
+@media (max-width: 600px) {
+    .login-box {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+}

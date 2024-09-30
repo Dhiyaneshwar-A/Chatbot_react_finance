@@ -30,12 +30,21 @@ app.get('/scrape', async (req, res) => {
     const page = await browser.newPage();
     console.log('Navigating to:', url);
 
+    // Increase the timeout and wait for more network activity to finish
     await page.goto(url, { waitUntil: 'networkidle2', timeout: 120000 });
+
+    // Wait for the body element to ensure content is loaded
     await page.waitForSelector('body');
 
-    const content = await page.evaluate(() => document.body.innerText);
+    // Option 1: Scrape the inner text (original approach)
+    // const content = await page.evaluate(() => document.body.innerText);
+
+    // Option 2: Scrape the entire HTML content
+    const content = await page.content();  // This fetches the full HTML content of the page
 
     await browser.close();
+    
+    // Send back the scraped HTML content
     res.send({ content });
   } catch (error) {
     console.error('Error scraping the website:', error);

@@ -5,21 +5,26 @@ const WebScraper = () => {
   const [url, setUrl] = useState(''); // To hold the URL entered by the user
   const [content, setContent] = useState(''); // To hold the scraped content
   const [error, setError] = useState(''); // To handle errors
+  const [loading, setLoading] = useState(false); // To manage the loading state
 
-  // Function to fetch the content from the given URL when button is clicked
+  // Function to fetch the content from the given URL when the button is clicked
   const handleScrapeWebsite = async () => {
     if (!url) {
       setError('Please provide a valid URL');
       return;
     }
 
+    setLoading(true); // Start the loading state
+    setError(''); // Clear any previous errors
+
     try {
       const { data } = await axios.get(`http://localhost:3001/scrape?url=${encodeURIComponent(url)}`);
       setContent(data.content || 'No content available');
-      setError(''); // Clear any previous errors
     } catch (err) {
       setError('Error fetching content from the website');
       console.error(err);
+    } finally {
+      setLoading(false); // End the loading state
     }
   };
 
@@ -37,9 +42,9 @@ const WebScraper = () => {
       />
       
       {/* Button to trigger the scrape website */}
-      <br></br>
-      <button onClick={handleScrapeWebsite} className="scrape-button">
-        Scrape Website
+      <br />
+      <button onClick={handleScrapeWebsite} className="scrape-button" disabled={loading}>
+        {loading ? 'Scraping...' : 'Scrape Website'}
       </button>
       
       {/* Error message display */}
